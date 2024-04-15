@@ -13,7 +13,7 @@ Below are the available endpoints in the project:
   Retrieves a specific book by it's ID.
 
 - POST /books
-  Adds a new book to the inventory. Requires a JSON payload with `id`, `title`, `author` and `quantity`
+  Adds a new book to the inventory. Requires a JSON payload with `id`, `title`, `author` and `quantity` (use body.json file, look at instructions on how to test)
 
 - PATCH /checkout
   Checks out a book from the inventory using the book's ID passed as a querty parameter. Reduces the quantity of the specified book by one.
@@ -67,4 +67,36 @@ You should see output that looks like this to validate:
 [GIN-debug] PATCH  /return                   --> main.returnBook (3 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+```
+
+#### Calling the APIs
+
+```
+➜  basic-go-api-implementation git:(main) ✗ curl localhost:8080/books
+[
+    {
+        "id": "1",
+        "title": "Beyond Good and Evil",
+        "author": "Fredrich Nietzhe",
+        "quantity": 4
+    },
+    {
+        "id": "2",
+        "title": "Think and Grow Rich",
+        "author": "Napoleon Hill",
+        "quantity": 5
+    },
+    {
+        "id": "3",
+        "title": "The Changing World Order",
+        "author": "Ray Dalio",
+        "quantity": 6
+    }
+]%
+```
+
+To make a call locally with the custom body.json use these flags:
+
+```
+--include --header "Content-Type: application/json" -d @body.json --request "POST"
 ```
